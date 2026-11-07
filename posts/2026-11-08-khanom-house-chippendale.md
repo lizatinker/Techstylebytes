@@ -9,6 +9,8 @@ where: Chippendale, Sydney
 had: Ham and cheese pastry and a coffee
 vibe: Hidden gem, very photogenic, tables out on the street
 go: When you need an hour to yourself to think
+rating: 7
+price: $17.82 for a pastry and a coffee
 address: 15 Meagher St, Chippendale NSW 2008
 hours: Mon 7.30am–2pm · Tue–Fri 7.30am–3pm · Sat–Sun 8am–4pm (check their Instagram before you go)
 venue_instagram: khanomhouse.syd
@@ -31,7 +33,7 @@ It attracts a lot of Instagrammers, and it's easy to see why. The cakes, the pro
 
 ## What I had
 
-I was craving savoury, and there wasn't a lot of savoury choice. I went with the ham and cheese pastry you can see in the photo, and it hit the spot.
+I was craving savoury, and there wasn't a lot of savoury choice. I went with the ham and cheese pastry you can see in the photo. Honestly, it could have been more flavourful and softer.
 
 The coffee was absolutely perfect.
 
@@ -63,4 +65,4 @@ For someone who plans in cafés, those two things matter more than any app featu
 
 If you're after a big savoury menu, keep your expectations small.
 
-**My verdict:** A hidden gem in Chippendale with a perfect coffee and a great outside table for planning your week. Come for the pastry and the matcha, and stay for the thinking time.
+**My verdict: 7/10.** A hidden gem in Chippendale with a perfect coffee and a great outside table for planning your week. It loses points for the small savoury choice and a pastry that needed more flavour. Come for the coffee and the matcha, and stay for the thinking time.
