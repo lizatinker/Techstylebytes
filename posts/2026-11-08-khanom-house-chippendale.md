@@ -1,5 +1,5 @@
 ---
-title: Khanom House: a hidden corner of Chippendale for pastry, coffee and planning my week
+title: Khanom House: pastry, perfect coffee and a planning hour
 date: 2026-11-08
 category: Eat & Drink
 cover: images/khanom-house-ham-cheese-coffee.jpg

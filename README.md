@@ -9,4 +9,6 @@ Liza Tinker's blog: Sydney cafes, bars, art, streets, fashion and tech. Live at 
 4. `python3 build.py` (needs `pip install markdown`), then commit and push to `main`. GitHub Pages serves `docs/`.
 5. Preview drafts with `python3 build.py --drafts`; set `draft: true` to keep a post offline.
 
+Domain: while `CUSTOM_DOMAIN_LIVE = False` in `build.py`, the site is at https://lizatinker.github.io/Techstylebytes/. Flip it to True once techstylebytes.com DNS points at GitHub Pages.
+
 Brand: navy #0d1b3e, pink #ff0876, teal #0a8086, yellow #f0c808; DM Serif Display, Oswald, Poppins (self-hosted in `static/fonts`).

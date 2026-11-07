@@ -26,6 +26,9 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, "docs")
 DRAFTS = "--drafts" in sys.argv
 PREVIEW = "--preview" in sys.argv  # explicit index.html links for hosts without directory indexes
+# Set True once techstylebytes.com DNS points at GitHub Pages. While False the site is served at
+# https://lizatinker.github.io/Techstylebytes/ (all links are relative, so it works under that path).
+CUSTOM_DOMAIN_LIVE = False
 
 
 def slugify(s):
@@ -137,7 +140,11 @@ def build():
     os.makedirs(OUT)
     shutil.copytree(os.path.join(ROOT, "static"), os.path.join(OUT, "static"))
     shutil.copytree(os.path.join(ROOT, "images"), os.path.join(OUT, "images"))
-    open(os.path.join(OUT, "CNAME"), "w").write("techstylebytes.com\n")
+    cname = os.path.join(OUT, "CNAME")
+    if CUSTOM_DOMAIN_LIVE:
+        open(cname, "w").write("techstylebytes.com\n")
+    elif os.path.exists(cname):
+        os.remove(cname)
     open(os.path.join(OUT, ".nojekyll"), "w").write("")
 
     # home
