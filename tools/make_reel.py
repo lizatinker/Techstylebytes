@@ -28,7 +28,7 @@ SCENES = [
     dict(photo=FOOD, dur=3.2, f0=(.6, .3), f1=(.58, .26), z0=1.25, z1=1.4, y=1040,
          lines=[("kicker", "THE COFFEE", None), ("big", "Absolutely", None), ("big", "perfect.", "perfect.")]),
     dict(photo=FOOD, dur=3.2, f0=(.2, .45), f1=(.24, .48), z0=1.3, z1=1.42, y=1040,
-         lines=[("kicker", "CRAVING SAVOURY?", None), ("big", "Ham & cheese", None), ("body", "Slim savoury pickings, but it hit the spot", None)]),
+         lines=[("kicker", "CRAVING SAVOURY?", None), ("big", "Ham & cheese", None), ("body", "Slim savoury pickings, could be softer", None)]),
     dict(photo=FOOD, dur=3.4, f0=(.78, .7), f1=(.72, .66), z0=1.3, z1=1.15, y=330,
          lines=[("kicker", "MY PLANNING HOUR", None), ("big", "Spiral diary +", None), ("big", "outside table", "outside table")]),
     dict(photo=SIGN, dur=2.8, f0=(.5, .66), f1=(.5, .64), z0=1.0, z1=1.06, y=1150,
@@ -83,15 +83,16 @@ def end_card():
     def centred(txt, fnt, y, fill):
         tw = d.textlength(txt, font=fnt); d.text(((W - tw) / 2, y), txt, font=fnt, fill=fill); return tw
     f = OSW(120); parts = [("TECH ", WHITE), ("STYLE", PINK), (" BYTES", WHITE)]
-    total = sum(d.textlength(t, font=f) for t, _ in parts); x = (W - total) / 2; y = 640
+    total = sum(d.textlength(t, font=f) for t, _ in parts); x = (W - total) / 2; y = 560
     for t, c in parts:
         d.text((x, y), t, font=f, fill=c)
         if t == "STYLE":
             d.rectangle((x, y + 170, x + d.textlength(t, font=f), y + 180), fill=PINK)
         x += d.textlength(t, font=f)
-    centred("Full review", DMI(78), 930, YELLOW)
-    centred("techstylebytes.com", POP(58), 1050, WHITE)
-    centred("@tech.style.bytes", OSW(52), 1160, PINK)
+    centred("My score: 7/10", OSW(64), 840, WHITE)
+    centred("Full review", DMI(78), 950, YELLOW)
+    centred("techstylebytes.com", POP(58), 1070, WHITE)
+    centred("@tech.style.bytes", OSW(52), 1180, PINK)
     return im
 
 
