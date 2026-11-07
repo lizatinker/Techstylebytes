@@ -28,7 +28,7 @@ DRAFTS = "--drafts" in sys.argv
 PREVIEW = "--preview" in sys.argv  # explicit index.html links for hosts without directory indexes
 # Set True once techstylebytes.com DNS points at GitHub Pages. While False the site is served at
 # https://lizatinker.github.io/Techstylebytes/ (all links are relative, so it works under that path).
-CUSTOM_DOMAIN_LIVE = False
+CUSTOM_DOMAIN_LIVE = True
 
 
 def slugify(s):
