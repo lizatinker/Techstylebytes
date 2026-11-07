@@ -25,4 +25,4 @@ Tech Style Bytes is where that half lives.
 
 Every review is honest. If something is ever gifted or sponsored, it will say so.
 
-Follow along on Instagram at [@techstylebytes](https://instagram.com/techstylebytes).
+Follow along on Instagram at [@tech.style.bytes](https://instagram.com/tech.style.bytes).

@@ -6,4 +6,4 @@ I paint big, bold canvases, design my own t-shirts, and come from a visual merch
 
 **Tech Style Bytes** is my notebook of Sydney cafes, bars, art, streets, fashion and the tech I actually use. All honest reviews, all my own photos.
 
-Brands and venues, say hello on Instagram at [@techstylebytes](https://instagram.com/techstylebytes).
+Brands and venues, say hello on Instagram at [@tech.style.bytes](https://instagram.com/tech.style.bytes).

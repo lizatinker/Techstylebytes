@@ -17,7 +17,7 @@ SITE = {
     "name": "Tech Style Bytes",
     "tagline": "Tech. Style. Sydney.",
     "url": "https://techstylebytes.com",
-    "instagram": "techstylebytes",
+    "instagram": "tech.style.bytes",
     "author": "Liza Tinker",
     "description": "Sydney cafes, bars, art, streets, fashion and tech, reviewed by Liza Tinker, Microsoft MVP with a fashion habit.",
 }
@@ -25,6 +25,7 @@ CATEGORIES = ["Eat & Drink", "Bars", "Art", "Streets", "Fashion", "Tech"]
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, "docs")
 DRAFTS = "--drafts" in sys.argv
+PREVIEW = "--preview" in sys.argv  # explicit index.html links for hosts without directory indexes
 
 
 def slugify(s):
@@ -124,6 +125,8 @@ def post_page(p):
 def write(path, content):
     full = os.path.join(OUT, path)
     os.makedirs(os.path.dirname(full), exist_ok=True)
+    if PREVIEW and full.endswith(".html"):
+        content = re.sub(r'href="((?:\.\./)*(?:[^"#:]*/)?)"', lambda m: f'href="{m.group(1)}index.html"', content)
     open(full, "w", encoding="utf-8").write(content)
 
 
