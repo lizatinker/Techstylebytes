@@ -43,7 +43,8 @@ def frame_photo(path, f, z):
     s0 = max(W / sw, H / sh)
     vw, vh = W / (s0 * z), H / (s0 * z)
     cx = min(max(f[0] * sw, vw / 2), sw - vw / 2); cy = min(max(f[1] * sh, vh / 2), sh - vh / 2)
-    box = (cx - vw / 2, cy - vh / 2, cx + vw / 2, cy + vh / 2)
+    vw, vh = min(vw, sw), min(vh, sh)
+    box = (max(0, cx - vw / 2), max(0, cy - vh / 2), min(sw, cx + vw / 2), min(sh, cy + vh / 2))
     return im.resize((W, H), Image.BICUBIC, box=box)
 
 
