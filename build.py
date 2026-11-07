@@ -9,6 +9,11 @@ Preview drafts: python3 build.py --drafts
 Front matter keys (one per line, `key: value`):
   title, date (YYYY-MM-DD), category, cover, excerpt,
   venue, where, had, vibe, go, rating (0-10), price, gallery (comma list), draft (true/false)
+  Places (shown in the "Find it" box at the bottom + Google structured data):
+    address, hours, website, venue_instagram (handle, no @), place_type (Cafe, Bakery, Restaurant, BarOrPub)
+  reel: the Instagram reel URL for this post (embedded on the page)
+  keywords: comma list for SEO (optional)
+  gallery items can carry alt text: images/x.jpg | Alt text here
 """
 import html, os, re, shutil, sys, datetime
 import markdown
@@ -57,14 +62,14 @@ def load_posts():
             continue
         meta["slug"] = re.sub(r"^\d{4}-\d{2}-\d{2}-", "", fn[:-3])
         meta["date"] = datetime.date.fromisoformat(meta.get("date") or fn[:10])
-        meta["gallery"] = [g.strip() for g in meta.get("gallery", "").split(",") if g.strip()]
+        meta["gallery"] = [tuple((x.strip() for x in (g + "|").split("|")[:2])) for g in meta.get("gallery", "").split(",") if g.strip()]
         meta["html"] = markdown.markdown(body, extensions=["extra", "smarty"])
         meta["is_draft"] = meta.get("draft", "false").lower() == "true"
         posts.append(meta)
     return sorted(posts, key=lambda p: p["date"], reverse=True)
 
 
-def page(title, body, rel, desc=None, image=None, canonical=""):
+def page(title, body, rel, desc=None, image=None, canonical="", og_type="website", extra_head=""):
     t = esc(title + " · " + SITE["name"]) if title else esc(SITE["name"] + " · " + SITE["tagline"])
     d = esc(desc or SITE["description"])
     og_img = f'<meta property="og:image" content="{SITE["url"]}/{esc(image)}">' if image else ""
@@ -74,8 +79,13 @@ def page(title, body, rel, desc=None, image=None, canonical=""):
 <html lang="en-AU"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{t}</title><meta name="description" content="{d}">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="{esc(SITE['author'])}">
+<meta property="og:site_name" content="{esc(SITE['name'])}"><meta property="og:locale" content="en_AU">
+<meta property="og:type" content="{og_type}"><meta property="og:url" content="{SITE['url']}/{canonical}">
 <meta property="og:title" content="{t}"><meta property="og:description" content="{d}">{og_img}
-<link rel="canonical" href="{SITE['url']}/{canonical}">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{t}"><meta name="twitter:description" content="{d}">
+<link rel="canonical" href="{SITE['url']}/{canonical}">{extra_head}
 <link rel="stylesheet" href="{rel}static/style.css">
 </head><body>
 <header class="masthead">
@@ -111,7 +121,7 @@ def post_page(p):
     if facts_html or p.get("rating"):
         score = f'<div class="bigscore">{esc(p["rating"])}<small>/10</small></div>' if p.get("rating") else ""
         verdict = f'<aside class="verdict"><h3>The verdict</h3>{score}<dl>{facts_html}</dl></aside>'
-    gallery = "".join(f'<img src="{rel}{esc(g)}" alt="{esc(p["title"])}" loading="lazy">' for g in p["gallery"])
+    gallery = "".join(f'<img src="{rel}{esc(g)}" alt="{esc(a or p["title"])}" loading="lazy">' for g, a in p["gallery"])
     gallery = f'<div class="gallery">{gallery}</div>' if gallery else ""
     draft = '<p class="draftnote">Sample layout: this post is a draft and won\'t go live until you approve it.</p>' if p["is_draft"] else ""
     body = f"""<article class="post">
@@ -121,8 +131,82 @@ def post_page(p):
   <time>{p['date'].strftime('%-d %B %Y')}</time>{f' · <span class="venue">{esc(p["venue"])}</span>' if p.get('venue') else ''}</div>
   <div class="postbody">{verdict}<div class="prose">{p['html']}</div></div>
   {gallery}
+  {reel_block(p)}
+  {find_it(p)}
 </article>"""
-    return page(p["title"], body, rel, p.get("excerpt"), p.get("cover"), f"posts/{p['slug']}/")
+    head = f'<meta property="article:published_time" content="{p["date"].isoformat()}">'
+    if p.get("keywords"):
+        head += f'<meta name="keywords" content="{esc(p["keywords"])}">'
+    head += json_ld(p)
+    return page(p["title"], body, rel, p.get("excerpt"), p.get("cover"), f"posts/{p['slug']}/", "article", head)
+
+
+def maps_url(p):
+    import urllib.parse
+    return "https://www.google.com/maps/search/?api=1&query=" + urllib.parse.quote(f"{p.get('venue','')} {p['address']}")
+
+
+def find_it(p):
+    if not (p.get("address") or p.get("website") or p.get("venue_instagram")):
+        return ""
+    rows = []
+    if p.get("address"):
+        rows.append(f'<div><dt>Address</dt><dd><a href="{esc(maps_url(p))}" rel="noopener">{esc(p["address"])}</a></dd></div>')
+    if p.get("hours"):
+        rows.append(f'<div><dt>Hours</dt><dd>{esc(p["hours"])}</dd></div>')
+    if p.get("website"):
+        label = re.sub(r"^https?://(www\.)?", "", p["website"]).rstrip("/")
+        rows.append(f'<div><dt>Website</dt><dd><a href="{esc(p["website"])}" rel="noopener">{esc(label)}</a></dd></div>')
+    if p.get("venue_instagram"):
+        h = p["venue_instagram"].lstrip("@")
+        rows.append(f'<div><dt>Instagram</dt><dd><a href="https://instagram.com/{esc(h)}" rel="noopener">@{esc(h)}</a></dd></div>')
+    return f'<aside class="findit"><h3>Find it</h3><p class="findname">{esc(p.get("venue") or p["title"])}</p><dl>{"".join(rows)}</dl></aside>'
+
+
+def reel_block(p):
+    if not p.get("reel"):
+        return ""
+    u = esc(p["reel"])
+    return f'''<section class="reel"><h3>Watch the reel</h3>
+  <blockquote class="instagram-media" data-instgrm-permalink="{u}" data-instgrm-version="14"><a href="{u}">Watch this review on Instagram @{esc(SITE['instagram'])}</a></blockquote>
+  <script async src="https://www.instagram.com/embed.js"></script></section>'''
+
+
+def json_ld(p):
+    import json
+    url = f"{SITE['url']}/posts/{p['slug']}/"
+    img = f"{SITE['url']}/{p['cover']}" if p.get("cover") else None
+    author = {"@type": "Person", "name": SITE["author"], "url": f"{SITE['url']}/about/",
+              "sameAs": [f"https://instagram.com/{SITE['instagram']}"]}
+    data = {"@context": "https://schema.org", "@type": "BlogPosting", "headline": p["title"],
+            "description": p.get("excerpt", ""), "datePublished": p["date"].isoformat(),
+            "author": author, "publisher": {"@type": "Organization", "name": SITE["name"], "url": SITE["url"]},
+            "mainEntityOfPage": url, "url": url, "articleSection": p.get("category", ""), "inLanguage": "en-AU"}
+    if img:
+        data["image"] = img
+    if p.get("keywords"):
+        data["keywords"] = p["keywords"]
+    graph = [data]
+    if p.get("address"):
+        place = {"@type": p.get("place_type") or "LocalBusiness", "name": p.get("venue") or p["title"]}
+        parts = [x.strip() for x in p["address"].split(",")]
+        addr = {"@type": "PostalAddress", "streetAddress": parts[0], "addressCountry": "AU"}
+        m = re.search(r"([A-Za-z ]+?)\s+(NSW|VIC|QLD|SA|WA|TAS|ACT|NT)\s+(\d{4})", p["address"])
+        if m:
+            addr.update(addressLocality=m.group(1).strip(), addressRegion=m.group(2), postalCode=m.group(3))
+        place["address"] = addr
+        same = [x for x in [p.get("website"), f"https://instagram.com/{p['venue_instagram'].lstrip('@')}" if p.get("venue_instagram") else None] if x]
+        if same:
+            place["sameAs"] = same
+        if p.get("website"):
+            place["url"] = p["website"]
+        review = {"@type": "Review", "itemReviewed": place, "author": author, "datePublished": p["date"].isoformat(),
+                  "name": p["title"], "url": url}
+        if p.get("rating"):
+            review["reviewRating"] = {"@type": "Rating", "ratingValue": p["rating"], "bestRating": "10", "worstRating": "0"}
+        graph.append(review)
+    blob = json.dumps(graph if len(graph) > 1 else data, ensure_ascii=False).replace("</", "<\\/")
+    return f'<script type="application/ld+json">{blob}</script>'
 
 
 def write(path, content):
@@ -174,7 +258,9 @@ def build():
 
     # sitemap
     urls = [""] + ["about/"] + [f"category/{slugify(c)}/" for c in CATEGORIES] + [f"posts/{p['slug']}/" for p in posts if not p["is_draft"]]
-    sm = "".join(f"<url><loc>{SITE['url']}/{u}</loc></url>" for u in urls)
+    latest = posts[0]["date"].isoformat() if posts else datetime.date.today().isoformat()
+    mods = {f"posts/{p['slug']}/": p["date"].isoformat() for p in posts}
+    sm = "".join(f"<url><loc>{SITE['url']}/{u}</loc><lastmod>{mods.get(u, latest)}</lastmod></url>" for u in urls)
     write("sitemap.xml", f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{sm}</urlset>')
     write("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE['url']}/sitemap.xml\n")
     print(f"Built {len(posts)} post(s) -> docs/" + (" (drafts included)" if DRAFTS else ""))

@@ -92,3 +92,12 @@ footer a{color:var(--yellow)}
   .about{display:block}
   .about img{max-width:280px;margin:0 auto 30px}
 }
+/* Find it + reel (bottom of posts) */
+.findit{max-width:760px;margin:44px auto 0;background:var(--navy);color:#fff;border-radius:18px;padding:24px}
+.findit h3,.reel h3{font:700 14px/1 Oswald,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow);margin:0 0 10px}
+.findit .findname{font:400 26px/1.2 "DM Serif Display",serif;margin:0 0 8px}
+.findit dl{margin:0}.findit dl div{padding:10px 0;border-top:1px solid rgba(255,255,255,.15)}
+.findit dt{font:500 11px/1 Oswald,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--pink);margin-bottom:5px}
+.findit dd{margin:0;font-size:15px;line-height:1.45}.findit a{color:#fff;text-decoration-color:var(--pink)}
+.reel{max-width:540px;margin:44px auto 0;text-align:center}.reel .instagram-media{margin:0 auto!important}
+@media (max-width:700px){.findit,.reel{margin:32px 18px 0}}

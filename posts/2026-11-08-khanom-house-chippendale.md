@@ -3,12 +3,17 @@ title: Khanom House: pastry, perfect coffee and a planning hour
 date: 2026-11-08
 category: Eat & Drink
 cover: images/khanom-house-ham-cheese-coffee.jpg
-excerpt: A little teal bakehouse in Chippendale, a perfect coffee, a ham and cheese pastry, and an hour to plan my week of content.
+excerpt: Khanom House is a little teal bakehouse in Chippendale, Sydney. A perfect coffee, a ham and cheese pastry, and an hour to plan my week.
 venue: Khanom House by The Baking Lists
-where: Chippendale, on the corner
+where: Chippendale, Sydney
 had: Ham and cheese pastry and a coffee
 vibe: Hidden gem, very photogenic, tables out on the street
 go: When you need an hour to yourself to think
+address: 15 Meagher St, Chippendale NSW 2008
+hours: Mon 7.30am–2pm · Tue–Fri 7.30am–3pm · Sat–Sun 8am–4pm (check their Instagram before you go)
+venue_instagram: khanomhouse.syd
+place_type: Bakery
+keywords: Khanom House, Khanom House Chippendale, Chippendale cafe, Sydney bakery, matcha Sydney, cafes to plan in Sydney, The Baking Lists
 ---
 Last weekend I was craving pastry. I also needed to get out of the house, because I plan best in coffee shops, and my diary needed some serious attention.
 

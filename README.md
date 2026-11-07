@@ -7,7 +7,10 @@ Liza Tinker's blog: Sydney cafes, bars, art, streets, fashion and tech. Live at 
 2. Resize photos to max 1600px with EXIF/GPS stripped (PIL `ImageOps.exif_transpose`, save without exif) into `images/`.
 3. Write `posts/YYYY-MM-DD-slug.md` in Liza's voice using only what she said: front matter keys are listed at the top of `build.py`.
 4. `python3 build.py` (needs `pip install markdown`), then commit and push to `main`. GitHub Pages serves `docs/`.
-5. Preview drafts with `python3 build.py --drafts`; set `draft: true` to keep a post offline.
+5. Places: fill `address`, `hours`, `website`, `venue_instagram`, `place_type` so the post gets a "Find it" box and Google structured data. Look these up from the venue's own Instagram/site; never guess.
+6. Reel: after Liza posts the Instagram reel, add `reel: <reel URL>` to the post and rebuild; it embeds at the bottom.
+7. SEO: put the venue/product, suburb and "Sydney" in the title or excerpt; add `keywords`; give every image alt text (`gallery: images/x.jpg | alt`).
+8. Preview drafts with `python3 build.py --drafts`; set `draft: true` to keep a post offline.
 
 Domain: techstylebytes.com is connected (GoDaddy DNS → GitHub Pages). Keep `CUSTOM_DOMAIN_LIVE = True` in `build.py` so the build keeps `docs/CNAME`.
 
