@@ -1,15 +1,13 @@
 ---
-title: The streets of Chippendale: a local's walk from Spice Alley onwards
+title: The streets of Chippendale: a local's weekend walk in Sydney
 date: 2026-11-10
 category: Streets
 cover: images/spice-alley-chippendale-neon-sign.jpg
-excerpt: A walk through the streets of Chippendale, Sydney, starting at Kensington Street and Spice Alley, the lantern-lit hawker laneway just off Broadway.
+excerpt: A local's walk through Chippendale, Sydney: Spice Alley on Kensington Street, hidden Chippendale Green, White Rabbit Gallery and The Chippo.
 where: Chippendale, Sydney
-vibe: Laneways, lanterns, heritage brick and big modern architecture
-go: A warm evening, when the fairy lights are on
+vibe: Laneways, lanterns, heritage brick and big green architecture
+go: Any weekend, and a warm evening for Spice Alley
 keywords: Chippendale Sydney, things to do in Chippendale, Spice Alley Sydney, Kensington Street Chippendale, Chippendale Green, White Rabbit Gallery, The Chippo vegan pub
-draft: true
-gallery: images/kensington-street-chippendale-towers.jpg | Modern towers and the green-walled One Central Park seen from a Chippendale street, images/kensington-street-outram-street-corner.jpg | A heritage brick building topped with a modern striped facade on the corner of Outram Street in Chippendale
 ---
 This is my walk through the streets of Chippendale: the corners, laneways and places I think are worth seeing.
 
@@ -29,9 +27,9 @@ There's quite a lot to choose from. You get a drink from the carts, then pick yo
 
 ![A narrow Spice Alley laneway with yellow lanterns overhead, colourful murals and a Spice Alley arrow painted on the wall](../../images/spice-alley-lantern-laneway.jpg)
 
-## Around Spice Alley
-
 There are some great restaurants around it too. There's a gin bar, there's Japanese, and there are plenty of other restaurants. I'll review those individually as I eat at them.
+
+![A heritage brick building topped with a modern striped facade on the corner of Outram Street in Chippendale](../../images/kensington-street-outram-street-corner.jpg)
 
 **Find it: Spice Alley**
 
@@ -45,19 +43,21 @@ Next stop is **Chippendale Green**, on Gadigal Country.
 
 ![The City of Sydney sign at Chippendale Green reading "Bujari gamarruwa, Welcome to Chippendale Green", with green-walled towers behind](../../images/chippendale-green-welcome-sign.jpg)
 
-It's a beautiful park, just across from UTS. The buildings around it are mostly student accommodation, but they're beautiful, with lots of greenery growing all over them. The cinemas are here too.
+It's a park at the back of Central Park, just off Broadway, and it's hidden. Lots of people going down Broadway don't even know it's there.
+
+But round the back there's a beautiful park, with the buildings overlooking it. They're mostly student accommodation, but they're beautiful, with lots of greenery growing all over them. The cinemas are here too.
 
 ![The green-walled towers around Chippendale Green, with a tall yellow ring sculpture on a pole in the foreground](../../images/chippendale-green-towers-ring-sculpture.jpg)
 
 You'll see lots of locals here, and lots of students sitting on the grass at lunchtime and on weekends.
 
-![The yellow ring sculpture on Chippendale Green against a blue sky, with a jacaranda in flower behind](../../images/chippendale-green-ring-sculpture-jacaranda.jpg)
+## The laneways: galleries and pubs
 
-## The back streets: galleries and pubs
+Chippendale Green is surrounded by the laneways of Chippendale, and they're full of art galleries.
 
-Around the Green are the back streets of Chippendale, and they're full of art galleries.
+The well-known one is the **White Rabbit Gallery**. If you're here, it's worth going to.
 
-The well-known one is the **White Rabbit Gallery**. If you're here, you'll want to check it out.
+![The White Rabbit Gallery's brick building on a Chippendale corner, with jacarandas in full purple bloom along the street](../../images/white-rabbit-gallery-jacaranda-balfour-street.jpg)
 
 There are lots of pubs too. **The Chippo** is a vegan pub, one of the only vegan pubs in Sydney. It's definitely worth a visit. The food's amazing.
 
@@ -73,4 +73,8 @@ There are lots of pubs too. **The Chippo** is a vegan pub, one of the only vegan
 - **Hours:** check their website before you go
 - **Website:** [thechippohotel.com.au](https://www.thechippohotel.com.au)
 
-<!-- NEXT STOP: more Chippendale streets coming as Liza walks -->
+## Keep exploring
+
+Chippendale is worth exploring. There are lots of little cafes, coffee shops, hidden bars and pubs, and I'm reviewing them individually.
+
+**My verdict:** definitely a place to come and explore on any given weekend.
