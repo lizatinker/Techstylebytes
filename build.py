@@ -26,7 +26,7 @@ SITE = {
     "author": "Liza Tinker",
     "description": "Sydney cafes, bars, art, streets, fashion and tech, reviewed by Liza Tinker, Microsoft MVP with a fashion habit.",
 }
-CATEGORIES = ["Eat & Drink", "Bars", "Art", "Streets", "Fashion", "Tech"]
+CATEGORIES = ["Eat & Drink", "Bars", "Art", "Streets", "Fashion", "Tech", "Work Smart"]
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, "docs")
 DRAFTS = "--drafts" in sys.argv
@@ -243,7 +243,7 @@ def build():
     # categories
     for c in CATEGORIES:
         cp = [p for p in posts if p.get("category") == c]
-        grid = "".join(card(p, "../../") for p in cp) or f'<p class="empty">No {esc(c)} reviews yet. Soon.</p>'
+        grid = "".join(card(p, "../../") for p in cp) or f'<p class="empty">No {esc(c)} posts yet. Soon.</p>'
         write(f"category/{slugify(c)}/index.html",
               page(c, f'<h1 class="section big">{esc(c)}</h1><section class="grid">{grid}</section>', "../../", canonical=f"category/{slugify(c)}/"))
 
